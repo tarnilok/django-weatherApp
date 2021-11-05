@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <title>WeatherApp</title>
+  </head>
+  <body>
+    {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
+    <div class="alert alert-primary container" style="width: 80%">{{ message }}</div>
+    {% elif message.tags == 'warning' %}
+    <div class="alert alert-danger container" style="width: 80%">{{ message }}</div>
+    {% endif %} {% endfor %} {% endif %}
+
+    <div class="my-5 d-flex flex-column justify-content-center align-items-center">
+      <div style="width: 300px" class="d-flex flex-column justify-content-center align-items-center">
+        <h2>Weather App</h2>
+        <form action="">
+          <input name="name" style="width: 250px" /><br />
+          <!-- name ne olursa urlde de o geliyor -->
+          <input type="submit" value="Add" class="btn btn-primary btn-md my-4" style="width: 250px" />
+        </form>
+      </div>
+      <div class="d-flex flex-wrap justify-content-center my-4" style="width: 100%">
+        {% for city in city_data %}
+        <div class="d-flex flex-column align-items-center mx-5 mb-5" style="width: 300px">
+          <div class="d-flex align-items-center justify-content-evenly" style="width: 100%">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="border: 1px solid black; height: 100%; width: 50%">
+              <h4 style="margin-bottom: 20px; text-align: center;">{{city.city.name}}</h4>
+              <h6>{{city.temp}}</h6>
+            </div>
+            <div class="d-flex flex-column align-items-center p-3" style="border: 1px solid black; height: 100%; width: 50%; text-align: center;">
+              <img style="height: 8rem" src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="icon" />
+              <h5>{{city.desc}}</h5>
+            </div>
+          </div>
+          <button class="btn btn-secondary btn-md my-2" style="width: 200px"><a href="{% url 'delete' city.city.id %}" style="text-decoration: none; color: white">Delete</a></button><br />
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  </body>
+</html>
