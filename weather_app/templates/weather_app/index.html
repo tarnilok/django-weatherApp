@@ -9,9 +9,15 @@
   </head>
   <body>
     {% if messages %} {% for message in messages %} {% if message.tags == 'success' %}
-    <div class="alert alert-primary container" style="width: 80%">{{ message }}</div>
+    <div class="alert alert-primary alert-dismissible fade show container" style="width: 80%">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     {% elif message.tags == 'warning' %}
-    <div class="alert alert-danger container" style="width: 80%">{{ message }}</div>
+    <div class="alert alert-danger alert-dismissible fade show container" style="width: 80%">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     {% endif %} {% endfor %} {% endif %}
 
     <div class="my-5 d-flex flex-column justify-content-center align-items-center">
@@ -27,11 +33,12 @@
         {% for city in city_data %}
         <div class="d-flex flex-column align-items-center mx-5 mb-5" style="width: 300px">
           <div class="d-flex align-items-center justify-content-evenly" style="width: 100%">
-            <div class="d-flex flex-column align-items-center justify-content-center" style="border: 1px solid black; height: 100%; width: 50%">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="border: 1px solid black; height: 200px; width: 50%">
               <h4 style="margin-bottom: 20px; text-align: center;">{{city.city.name}}</h4>
-              <h6>{{city.temp}}</h6>
+              <h5>Country: {{city.country}}</h5>
+              <h6>{{city.temp | floatformat}} ℃</h6>
             </div>
-            <div class="d-flex flex-column align-items-center p-3" style="border: 1px solid black; height: 100%; width: 50%; text-align: center;">
+            <div class="d-flex flex-column align-items-center p-3" style="border: 1px solid black; height: 200px; width: 50%; text-align: center">
               <img style="height: 8rem" src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="icon" />
               <h5>{{city.desc}}</h5>
             </div>

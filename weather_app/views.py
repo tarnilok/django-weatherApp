@@ -4,6 +4,7 @@ from decouple import config
 from pprint import pprint # gelen contenti daha düzgün hale getiriyor
 from .models import City
 from django.contrib import messages
+import datetime
 
 def index(request):
     cities = City.objects.all()
@@ -41,11 +42,13 @@ def index(request):
         content = response.json()
         pprint(content)
         print(type(content))
+         
         data = {
             'city' : city,
             'temp' : content['main']['temp'],
             'desc' : content['weather'][0]['description'],
             'icon' : content['weather'][0]['icon'],
+            'country' : content['sys']['country']
         }
         city_data.append(data)
         print(city_data)
