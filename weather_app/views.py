@@ -9,21 +9,21 @@ import datetime
 def index(request):
     cities = City.objects.all()
     url = 'https://api.openweathermap.org/data/2.5/weather?q={}&appid={}&units=metric'
-    city = 'İstanbul'
+    # city = 'İstanbul'
     # response = requests.get(url.format(city, config('API_KEY')))
     # content = response.json()
     # pprint(content)
     # print(type(content))
     
     g_city = request.GET.get('name') # 'chris' chris boş geldiğinde dönecek default değer
-    print('g_city: ', g_city)
+    # print('g_city: ', g_city)
     if g_city:
         response = requests.get(url.format(g_city, config('API_KEY')))
-        print(response.status_code)
+        # print(response.status_code)
         if response.status_code == 200:
             content = response.json()
             a_city = content['name']
-            print(a_city)
+            # print(a_city)
             
             if City.objects.filter(name=a_city):
                 messages.warning(request, 'City already exists')
@@ -37,11 +37,11 @@ def index(request):
     city_data = []
     
     for city in cities:
-        print(city)
+        # print(city)
         response = requests.get(url.format(city, config('API_KEY')))
         content = response.json()
-        pprint(content)
-        print(type(content))
+        # pprint(content)
+        # print(type(content))
          
         data = {
             'city' : city,
@@ -51,7 +51,7 @@ def index(request):
             'country' : content['sys']['country']
         }
         city_data.append(data)
-        print(city_data)
+        # print(city_data)
         
         context = {
             'city_data' : city_data
