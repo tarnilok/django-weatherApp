@@ -31,14 +31,14 @@
       </div>
       <div class="d-flex flex-wrap justify-content-center my-4" style="width: 100%">
         {% for city in city_data %}
-        <div class="d-flex flex-column align-items-center mx-5 mb-5" style="width: 300px">
+        <div class="d-flex flex-column align-items-center mx-5 mb-5" style="width: 375px">
           <div class="d-flex align-items-center justify-content-evenly" style="width: 100%">
-            <div class="d-flex flex-column align-items-center justify-content-center" style="border: 1px solid black; height: 200px; width: 50%">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="border: 1px solid black; height: 200px; width: 50%; ">
               <h4 style="margin-bottom: 20px; text-align: center;">{{city.city.name}}</h4>
-              <h5>Country: {{city.country}}</h5>
+              <h5>Country: {{city.country}}</h5>3vh
               <h6>{{city.temp | floatformat}} ℃</h6>
             </div>
-            <div class="d-flex flex-column align-items-center p-3" style="border: 1px solid black; height: 200px; width: 50%; text-align: center">
+            <div class="d-flex flex-column align-items-center p-2" style="border: 1px solid black; height: 200px; width: 50%; text-align: center">
               <img style="height: 8rem" src="http://openweathermap.org/img/w/{{ city.icon }}.png" alt="icon" />
               <h5>{{city.desc}}</h5>
             </div>
